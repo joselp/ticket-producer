@@ -2,13 +2,13 @@ package com.jp.event.ticketproducer.application.port.in;
 
 import com.jp.event.ticketproducer.domain.Ticket;
 
-import java.time.LocalDateTime;
+import java.util.Optional;
 
 public interface TicketService {
 
     Ticket createTicket(Ticket ticket);
 
-    Ticket getTicket();
+    Optional<Ticket> getTicket(Integer id);
 
-    Ticket updateShowDate(String id, LocalDateTime newDate);
+    boolean updateShowDate(Integer id, Integer postpone);
 }

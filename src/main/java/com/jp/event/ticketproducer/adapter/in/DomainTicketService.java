@@ -6,6 +6,7 @@ import com.jp.event.ticketproducer.application.port.out.TicketRepository;
 import com.jp.event.ticketproducer.domain.Ticket;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 public class DomainTicketService implements TicketService {
 
@@ -18,22 +19,31 @@ public class DomainTicketService implements TicketService {
     @Override
     public Ticket createTicket(Ticket ticket) {
 
-        ticketRepository.save(TicketEntity.builder()
+        TicketEntity entity = ticketRepository.save(TicketEntity.builder()
                 .seat(ticket.getSeat())
-                .issueDate(ticket.getIssueDate())
+                .issueDate(LocalDateTime.now())
                 .showDate(ticket.getShowDate())
                 .build());
+        ticket.setId(entity.getId());
 
-        return null;
+        return ticket;
     }
 
     @Override
-    public Ticket getTicket() {
-        return null;
+    public Optional<Ticket> getTicket(Integer id) {
+
+        Optional<TicketEntity> ticketEntity = ticketRepository.get(id);
+
+        return ticketEntity.map(entity -> Ticket.builder()
+                .id(id)
+                .issueDate(entity.getIssueDate())
+                .seat(entity.getSeat())
+                .showDate(entity.getShowDate())
+                .build());
     }
 
     @Override
-    public Ticket updateShowDate(String id, LocalDateTime newDate) {
-        return null;
+    public boolean updateShowDate(Integer id, Integer postpone) {
+        return  ticketRepository.updateShowDate(id, LocalDateTime.now().plusDays(postpone)) > 0;
     }
 }
