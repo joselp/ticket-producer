@@ -1,8 +1,8 @@
 package com.jp.event.ticketproducer.adapter.configuration;
 
 import com.jp.event.ticketproducer.TicketProducerApplication;
-import com.jp.event.ticketproducer.adapter.in.DomainTicketService;
-import com.jp.event.ticketproducer.application.port.in.TicketService;
+import com.jp.event.ticketproducer.application.usecase.TicketUseCaseImpl;
+import com.jp.event.ticketproducer.application.usecase.TicketUseCase;
 import com.jp.event.ticketproducer.application.port.out.TicketRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 public class BeanConfiguration {
 
     @Bean
-    TicketService ticketService(TicketRepository ticketRepository){
-        return new DomainTicketService(ticketRepository);
+    TicketUseCase ticketUseCase(TicketRepository ticketRepository){
+        return new TicketUseCaseImpl(ticketRepository);
     }
 }

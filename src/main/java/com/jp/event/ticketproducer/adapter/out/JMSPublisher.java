@@ -1,6 +1,9 @@
 package com.jp.event.ticketproducer.adapter.out;
 
-import com.jp.event.ticketproducer.application.entity.TicketEntity;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.jp.event.ticketproducer.application.domain.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Repository;
@@ -21,17 +24,26 @@ public class JMSPublisher {
         this.queue = queue;
     }
 
-    public TicketEntity save(TicketEntity ticketEntity) {
-        jmsTemplate.convertAndSend(queue, ticketEntity);
-        return ticketEntity;
+    Ticket publish(Ticket ticket)  {
+
+        String ticketString = null;
+        try {
+            ticketString = new ObjectMapper().registerModule(new JavaTimeModule()).writeValueAsString(ticket);
+            System.out.println(ticketString);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        jmsTemplate.convertAndSend(queue, ticketString);
+        return ticket;
     }
 
-    public Optional<TicketEntity> get(Integer id) {
+    Optional<Ticket> get(String id) {
         return Optional.empty();
     }
 
-    public int updateShowDate(Integer id, LocalDateTime newDate) {
-        TicketEntity ticketEntity = TicketEntity.builder()
+    int updateShowDate(String id, LocalDateTime newDate) {
+        Ticket ticketEntity = Ticket.builder()
                 .id(id)
                 .showDate(newDate)
                 .build();

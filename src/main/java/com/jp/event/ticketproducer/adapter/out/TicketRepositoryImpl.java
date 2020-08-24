@@ -1,6 +1,6 @@
 package com.jp.event.ticketproducer.adapter.out;
 
-import com.jp.event.ticketproducer.application.entity.TicketEntity;
+import com.jp.event.ticketproducer.application.domain.Ticket;
 import com.jp.event.ticketproducer.application.port.out.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -11,27 +11,27 @@ import java.util.Optional;
 
 @Component
 @Primary
-public class DomainTicketRepository implements TicketRepository {
+public class TicketRepositoryImpl implements TicketRepository {
 
     private JMSPublisher jmsPublisher;
 
     @Autowired
-    public DomainTicketRepository(JMSPublisher jmsPublisher) {
+    public TicketRepositoryImpl(JMSPublisher jmsPublisher) {
         this.jmsPublisher = jmsPublisher;
     }
 
     @Override
-    public TicketEntity save(TicketEntity ticketEntity) {
-        return jmsPublisher.save(ticketEntity);
+    public Ticket publish(Ticket ticket) {
+        return jmsPublisher.publish(ticket);
     }
 
     @Override
-    public Optional<TicketEntity> get(Integer id) {
+    public Optional<Ticket> get(String id) {
         return jmsPublisher.get(id);
     }
 
     @Override
-    public int updateShowDate(Integer id, LocalDateTime newDate) {
+    public int updateShowDate(String id, LocalDateTime newDate) {
         return jmsPublisher.updateShowDate(id, newDate);
     }
 }

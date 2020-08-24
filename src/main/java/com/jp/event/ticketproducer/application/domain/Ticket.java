@@ -1,4 +1,4 @@
-package com.jp.event.ticketproducer.domain;
+package com.jp.event.ticketproducer.application.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -6,15 +6,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
-public class Ticket {
+public class Ticket implements Serializable {
 
-    private Integer id;
+    private String id;
     private LocalDateTime issueDate;
     private String seat;
     private LocalDateTime showDate;

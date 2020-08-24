@@ -1,15 +1,15 @@
 package com.jp.event.ticketproducer.application.port.out;
 
-import com.jp.event.ticketproducer.application.entity.TicketEntity;
+import com.jp.event.ticketproducer.application.domain.Ticket;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 
 public interface TicketRepository {
 
-    TicketEntity save(TicketEntity ticketEntity);
+    Ticket publish(Ticket ticket);
 
-    Optional<TicketEntity> get(Integer id);
+    Optional<Ticket> get(String id);
 
-    int updateShowDate(Integer id, LocalDateTime newDate);
+    int updateShowDate(String id, LocalDateTime newDate);
 }
