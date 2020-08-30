@@ -1,8 +1,8 @@
 package com.jp.event.ticketproducer.adapter.in;
 
 import com.jp.event.ticketproducer.application.domain.Ticket;
-import com.jp.event.ticketproducer.application.port.in.TicketApi;
-import com.jp.event.ticketproducer.application.usecase.TicketUseCase;
+import com.jp.event.ticketproducer.application.rest.TicketApi;
+import com.jp.event.ticketproducer.application.port.in.TicketUseCase;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.logging.Logger;

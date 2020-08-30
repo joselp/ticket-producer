@@ -1,8 +1,8 @@
 package com.jp.event.ticketproducer.adapter.configuration;
 
 import com.jp.event.ticketproducer.TicketProducerApplication;
-import com.jp.event.ticketproducer.application.usecase.TicketUseCaseImpl;
-import com.jp.event.ticketproducer.application.usecase.TicketUseCase;
+import com.jp.event.ticketproducer.application.domain.usecase.TicketUseCaseImpl;
+import com.jp.event.ticketproducer.application.port.in.TicketUseCase;
 import com.jp.event.ticketproducer.application.port.out.TicketRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

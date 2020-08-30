@@ -1,6 +1,7 @@
-package com.jp.event.ticketproducer.application.usecase;
+package com.jp.event.ticketproducer.application.domain.usecase;
 
 import com.jp.event.ticketproducer.application.domain.Ticket;
+import com.jp.event.ticketproducer.application.port.in.TicketUseCase;
 import com.jp.event.ticketproducer.application.port.out.TicketRepository;
 
 import java.time.LocalDateTime;

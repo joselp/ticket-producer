@@ -1,4 +1,4 @@
-package com.jp.event.ticketproducer.application.port.in;
+package com.jp.event.ticketproducer.application.rest;
 
 import com.jp.event.ticketproducer.application.domain.Ticket;
 import org.springframework.web.bind.annotation.PathVariable;
