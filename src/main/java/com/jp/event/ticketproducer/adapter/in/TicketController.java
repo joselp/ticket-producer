@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 @RestController
 public class TicketController implements TicketApi {
 
-    Logger logger = Logger.getLogger(TicketController.class.getName());
+    private Logger logger = Logger.getLogger(TicketController.class.getName());
 
     private TicketUseCase ticketUseCase;
 

@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.jms.Queue;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Repository
@@ -42,12 +44,12 @@ public class JMSPublisher {
         return Optional.empty();
     }
 
-    int updateShowDate(String id, LocalDateTime newDate) {
-        Ticket ticketEntity = Ticket.builder()
-                .id(id)
-                .showDate(newDate)
-                .build();
-        jmsTemplate.convertAndSend(queue, ticketEntity);
+    int updateShowDate(String id, Integer days) {
+
+        Map<String, Integer> update = new HashMap<>();
+        update.put(id, days);
+
+        jmsTemplate.convertAndSend(queue, update);
         return 1;
     }
 }

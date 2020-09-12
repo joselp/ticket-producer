@@ -31,7 +31,7 @@ public class TicketRepositoryImpl implements TicketRepository {
     }
 
     @Override
-    public int updateShowDate(String id, LocalDateTime newDate) {
-        return jmsPublisher.updateShowDate(id, newDate);
+    public int updateShowDate(String id, Integer postpone) {
+        return jmsPublisher.updateShowDate(id, postpone);
     }
 }

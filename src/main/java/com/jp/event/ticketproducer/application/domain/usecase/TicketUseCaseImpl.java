@@ -36,6 +36,6 @@ public class TicketUseCaseImpl implements TicketUseCase {
 
     @Override
     public boolean updateShowDate(String id, Integer postpone) {
-        return  ticketRepository.updateShowDate(id, LocalDateTime.now().plusDays(postpone)) > 0;
+        return  ticketRepository.updateShowDate(id, postpone) > 0;
     }
 }

@@ -11,6 +11,6 @@ public interface TicketApi {
     @PostMapping("/tickets")
     Ticket createTicket(@RequestBody Ticket ticket);
 
-    @PutMapping("/tickets/{postpone}")
-    boolean updateTicketShowDate(String id, @PathVariable(name = "postpone") Integer postpone);
+    @PutMapping("/tickets/{id}/{postpone}")
+    boolean updateTicketShowDate(@PathVariable(name = "id") String id, @PathVariable(name = "postpone") Integer postpone);
 }

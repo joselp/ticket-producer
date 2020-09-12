@@ -11,5 +11,5 @@ public interface TicketRepository {
 
     Optional<Ticket> get(String id);
 
-    int updateShowDate(String id, LocalDateTime newDate);
+    int updateShowDate(String id, Integer postpone);
 }
