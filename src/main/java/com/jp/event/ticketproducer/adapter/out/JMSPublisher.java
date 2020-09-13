@@ -18,12 +18,14 @@ import java.util.Optional;
 public class JMSPublisher {
 
     private JmsTemplate jmsTemplate;
-    private Queue queue;
+    private Queue queueCreate;
+    private Queue queueUpdate;
 
     @Autowired
-    public JMSPublisher(JmsTemplate jmsTemplate, Queue queue) {
+    public JMSPublisher(JmsTemplate jmsTemplate, Queue queueCreate, Queue queueUpdate) {
         this.jmsTemplate = jmsTemplate;
-        this.queue = queue;
+        this.queueCreate = queueCreate;
+        this.queueUpdate = queueUpdate;
     }
 
     Ticket publish(Ticket ticket)  {
@@ -36,7 +38,7 @@ public class JMSPublisher {
             e.printStackTrace();
         }
 
-        jmsTemplate.convertAndSend(queue, ticketString);
+        jmsTemplate.convertAndSend(queueCreate, ticketString);
         return ticket;
     }
 
@@ -49,7 +51,7 @@ public class JMSPublisher {
         Map<String, Integer> update = new HashMap<>();
         update.put(id, days);
 
-        jmsTemplate.convertAndSend(queue, update);
+        jmsTemplate.convertAndSend(queueUpdate, update);
         return 1;
     }
 }

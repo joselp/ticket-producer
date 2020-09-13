@@ -12,7 +12,12 @@ import javax.jms.Queue;
 public class JMSConfig {
 
     @Bean
-    public Queue queue() {
-        return new ActiveMQQueue("simpleJms.queue");
+    public Queue queueCreate() {
+        return new ActiveMQQueue("simpleJms.queue.create");
+    }
+
+    @Bean
+    public Queue queueUpdate() {
+        return new ActiveMQQueue("simpleJms.queue.update");
     }
 }
